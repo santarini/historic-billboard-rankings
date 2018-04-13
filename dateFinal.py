@@ -29,4 +29,4 @@ with open("billboardDateHrefs.csv") as csvfileA:
                     artistName = artistName.strip()
 
                 writer.writerow({'Year': year,'IssueDate':dateText,'Rank':weekRank, 'Artist':artistName,'Song':songName})
-                print(weekRank +", " + artistName +" - "+songName)
+                print(dateText+", "+ year+": "+weekRank +", " + artistName +" - "+songName)
