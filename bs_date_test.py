@@ -1,8 +1,5 @@
-import os
 import requests
 import bs4 as bs
-import csv
-import re
 
 i =1958
 while i <  2018:
