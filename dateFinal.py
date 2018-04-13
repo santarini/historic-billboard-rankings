@@ -3,8 +3,8 @@ import requests
 import bs4 as bs
 import csv
 import re
-
-
+import time
+start_time = time.time()
 with open("billboardDateHrefs.csv") as csvfileA:
     reader = csv.DictReader(csvfileA)
     with open('dateRank.csv', 'a') as csvfileB:
@@ -30,3 +30,5 @@ with open("billboardDateHrefs.csv") as csvfileA:
 
                 writer.writerow({'Year': year,'IssueDate':dateText,'Rank':weekRank, 'Artist':artistName,'Song':songName})
                 print(dateText+", "+ year+": "+weekRank +", " + artistName +" - "+songName)
+elapsed_time = time.time() - start_time
+print(elapsed_time)
