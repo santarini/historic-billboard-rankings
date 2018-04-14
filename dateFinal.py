@@ -19,7 +19,7 @@ with open("billboardDateHrefs.csv") as csvfileA:
             response = requests.get(url, headers=headers)
             soup = bs.BeautifulSoup(response.text, 'lxml')
             chart = soup.findAll("div", {"class": "container"})[2]
-            for row in chart.findAll('article'):
+            for row in chart.findAll("article", {"class": "chart-row"}):
                 weekRank = row.find("span", {"class": "chart-row__current-week"}).text
                 songName = row.find("h2", {"class": "chart-row__song"}).text
                 try:
@@ -28,6 +28,7 @@ with open("billboardDateHrefs.csv") as csvfileA:
                 except(TypeError, AttributeError):
                     artistName = row.find("span", {"class": "chart-row__artist"}).text
                     artistName = artistName.strip()
+
                 writer.writerow({'Year': year,'IssueDate':dateText,'Rank':weekRank, 'Artist':artistName,'Song':songName})
                 print(dateText+", "+ year+": "+weekRank +", " + artistName +" - "+songName)
 elapsed_time = time.time() - start_time
