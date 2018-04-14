@@ -14,9 +14,10 @@ with open("billboardDateHrefs.csv") as csvfileA:
             year = (row['Year'])
             dateText = (row['IssueDate'])
             href = (row['Href'])
-            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36',}
+            #headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36',}
             url = 'https://www.billboard.com' + href
-            response = requests.get(url, headers=headers)
+            response = requests.get(url)
+            #response = requests.get(url, headers=headers)
             soup = bs.BeautifulSoup(response.text, 'lxml')
             chart = soup.findAll("div", {"class": "container"})[2]
             for row in chart.findAll("article", {"class": "chart-row"}):
